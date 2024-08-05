@@ -19,8 +19,8 @@ def create_shelf():
         return
 
     cmds.shelfLayout(config.SHELF_NAME, parent='ShelfLayout')
-    create_button('Record', config.RECORD_COMMAND_NAME)
-    create_button('Stop', config.STOP_COMMAND_NAME)
+    create_button('Record', config.RECORD_COMMAND_NAME, 'camera.svg')
+    create_button('Stop', config.STOP_COMMAND_NAME, 'stopClip.png')
 
 
 def remove_shelf():

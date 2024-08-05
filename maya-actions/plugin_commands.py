@@ -31,7 +31,7 @@ class StopCommand(ommpx.MPxCommand):
             om.MGlobal.displayInfo('Recording discarded')
             return
 
-        shelf.create_button(label, ';'.join(commands))
+        shelf.create_button(label, ';'.join(commands), 'playblast.png')
 
     def _prompt_for_label(self):
         dialog = prompt.LabelPromptDialog()
