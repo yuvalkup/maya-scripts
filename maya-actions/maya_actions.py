@@ -7,14 +7,7 @@ import config
 import plugin_commands
 import recorder
 
-import importlib
-importlib.reload(config)
-importlib.reload(shelf)
-importlib.reload(plugin_commands)
-importlib.reload(recorder)
 
-
-# Initialize the plugin
 def initializePlugin(mobject):
     mplugin = ommpx.MFnPlugin(mobject)
     try:
@@ -29,7 +22,6 @@ def initializePlugin(mobject):
         om.MGlobal.displayError("Failed to register command: customShelfCommand - {}".format(e))
 
 
-# Uninitialize the plugin
 def uninitializePlugin(mobject):
     mplugin = ommpx.MFnPlugin(mobject)
     try:
