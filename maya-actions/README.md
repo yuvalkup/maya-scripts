@@ -15,6 +15,26 @@ The usage is simple:
 
 NOTE: Selection is an action itslef - to change an object make sure you selected it before recording!
 
+## Installation
+
+1. Download the latest artifact from the github actions page.
+2. Extract the folder and copy the folder into your plug-ins folder
+
+```
+Windows:
+C:\Users\<YourUsername>\Documents\maya\<version>\plug-ins
+
+macOS:
+/Users/<YourUsername>/Library/Preferences/Autodesk/maya/<version>/plug-ins
+
+Linux:
+~/maya/<version>/plug-ins
+```
+
+3. Open Maya, go to `Windows > Settings/Preferences > Plug-in Manager`
+4. Click "Browse" and choose `maya_actions.py` file from the `maya-actions` folder you had copied.
+5. Make sure the "Loaded" and "auto-load" checkboxes are checked for `maya_actions` plugin in the Plug-in Manager.
+
 ## Features
 
 * Record any set of actions you can do in Maya.
