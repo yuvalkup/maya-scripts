@@ -1,0 +1,26 @@
+name: Zip and Upload
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  zip-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install zip
+      run: sudo apt-get install zip
+
+    - name: Zip folder
+      run: zip -r maya-actions.zip maya-actions
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: maya-actions.zip
+        path: maya-actions.zip
