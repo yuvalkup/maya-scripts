@@ -1,0 +1,60 @@
+// Maya Git Plugin Installer
+// Drag this file into Maya to install the plugin
+
+global proc maya-git_install() {
+    // Get the directory where the install.mel file is located
+    string $installDir = `dirname $MAYA_SCRIPT_PATH`;
+    
+    // Define source and destination paths
+    string $sourceDir = $installDir + "/src";
+    string $scriptsDir = `internalVar -userScriptDir`;
+    
+    // Create destination directory if it doesn't exist
+    if (!`filetest -d $scriptsDir`) {
+        sysFile -makeDir $scriptsDir;
+    }
+    
+    // Copy the plugin files
+    string $pluginFile = "maya-git.py";
+    string $sourceFile = $sourceDir + "/" + $pluginFile;
+    string $destFile = $scriptsDir + "/" + $pluginFile;
+    
+    // Check if source file exists
+    if (!`filetest -f $sourceFile`) {
+        warning ("Source file not found: " + $sourceFile);
+        return;
+    }
+    
+    // Copy the file
+    if (`filetest -f $destFile`) {
+        // If file exists, ask for confirmation
+        string $confirm = `confirmDialog -title "File Exists" 
+            -message ("File already exists: " + $destFile + "\nOverwrite?")
+            -button "Yes" -button "No"
+            -defaultButton "Yes"
+            -cancelButton "No"
+            -dismissString "No"`;
+            
+        if ($confirm != "Yes") {
+            warning "Installation cancelled.";
+            return;
+        }
+    }
+    
+    // Copy the file
+    sysFile -copy $sourceFile $destFile;
+    
+    // Load the plugin
+    if (!`pluginInfo -q -loaded maya-git`) {
+        loadPlugin $destFile;
+    }
+    
+    // Show success message
+    confirmDialog -title "Installation Complete" 
+        -message "Maya Git Plugin has been installed successfully!\n\nYou can now access it through the Maya menu or by running:\nimport maya.cmds as cmds\ncmds.loadPlugin('maya-git.py')"
+        -button "OK"
+        -defaultButton "OK";
+}
+
+// Run the installation
+maya-git_install(); 
